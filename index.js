@@ -28,23 +28,39 @@ fs.chmod("start.sh", 0o777, (err) => {
 // create HTTP server
 const server = http.createServer((req, res) => {
     if (req.url === '/') {
-      res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
-      res.end('Hello world!');
+        // 讀取 index.html
+        fs.readFile('./index.html', 'utf8', (err, data) => {
+            if (err) {
+                console.error(err);
+                res.writeHead(500, { 'Content-Type': 'text/plain; charset=utf-8' });
+                res.end('Error loading index.html');
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/html; charset=utf-8' });
+                res.end(data);
+            }
+        });
+        return;
     }
+
     // get-sub
     if (req.url === '/sub') {
-      fs.readFile(subtxt, 'utf8', (err, data) => {
-        if (err) {
-          console.error(err);
-          res.writeHead(500, { 'Content-Type': 'application/json' });
-          res.end(JSON.stringify({ error: 'Error reading url.txt' }));
-        } else {
-          res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
-          res.end(data);
-        }
-      });
+        fs.readFile(subtxt, 'utf8', (err, data) => {
+            if (err) {
+                console.error(err);
+                res.writeHead(500, { 'Content-Type': 'application/json' });
+                res.end(JSON.stringify({ error: 'Error reading url.txt' }));
+            } else {
+                res.writeHead(200, { 'Content-Type': 'text/plain; charset=utf-8' });
+                res.end(data);
+            }
+        });
+        return;
     }
-  });
+
+    // 其他路由 404
+    res.writeHead(404, { 'Content-Type': 'text/plain; charset=utf-8' });
+    res.end('Not Found');
+});
 
 server.listen(HTTP_PORT, () => {
   console.log(`Server is running on port ${HTTP_PORT}`);
