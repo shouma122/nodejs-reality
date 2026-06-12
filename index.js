@@ -1,7 +1,7 @@
 const http = require('http');
 const fs = require('fs');
 const exec = require("child_process").exec;
-const subtxt = './app/url.txt'
+const subtxt = './url.txt'; // 確保這個檔案存在
 const HTTP_PORT = process.env.HTTP_PORT || 3000;
 
 // Run start.sh
@@ -12,15 +12,11 @@ fs.chmod("start.sh", 0o777, (err) => {
   }
   console.log(`start.sh empowerment successful`);
   const child = exec('bash start.sh');
-  child.stdout.on('data', (data) => {
-      console.log(data);
-  });
-  child.stderr.on('data', (data) => {
-      console.error(data);
-  });
+  child.stdout.on('data', (data) => console.log(data));
+  child.stderr.on('data', (data) => console.error(data));
   child.on('close', (code) => {
       console.log(`child process exited with code ${code}`);
-      console.clear()
+      console.clear();
       console.log(`App is running`);
   });
 });
@@ -28,7 +24,6 @@ fs.chmod("start.sh", 0o777, (err) => {
 // create HTTP server
 const server = http.createServer((req, res) => {
     if (req.url === '/') {
-        // 讀取 index.html
         fs.readFile('./index.html', 'utf8', (err, data) => {
             if (err) {
                 console.error(err);
