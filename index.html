@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>實務GO設計｜台灣室內設計公司</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:"Microsoft JhengHei",Arial,sans-serif;line-height:1.7;color:#333;background:#f8f5ef}
+.container{max-width:1200px;margin:auto;padding:0 20px}
+header{background:#fff;box-shadow:0 2px 15px rgba(0,0,0,.06);position:fixed;width:100%;z-index:1000}
+nav{display:flex;justify-content:space-between;align-items:center;padding:20px 0}
+.logo{display:flex;align-items:center}
+.logo-icon{color:#8b5e34;font-size:28px;margin-right:10px}
+.logo-text{font-size:24px;font-weight:800;color:#222}
+.logo-text span{color:#8b5e34}
+.nav-links{display:flex;list-style:none}
+.nav-links li{margin-left:30px}
+.nav-links a{text-decoration:none;color:#555;font-weight:600}
+.nav-links a:hover{color:#8b5e34}
+.cta-button{background:#8b5e34;color:#fff;border:none;padding:12px 28px;border-radius:6px;font-weight:700;cursor:pointer}
+.secondary-button{background:#fff;color:#8b5e34;border:2px solid #8b5e34;padding:12px 28px;border-radius:6px;font-weight:700;cursor:pointer}
+.mobile-menu-btn{display:none;background:none;border:none;font-size:24px}
+.hero{padding:150px 0 100px;background:linear-gradient(135deg,#f2e7d8,#f8f5ef)}
+.hero-content{display:flex;align-items:center;justify-content:space-between}
+.hero-text{flex:1;padding-right:40px}
+.hero-text h1{font-size:50px;line-height:1.25;margin-bottom:20px;color:#222}
+.hero-text h1 span{color:#8b5e34}
+.hero-text p{font-size:18px;color:#666;margin-bottom:30px;max-width:620px}
+.hero-buttons{display:flex;gap:15px}
+.hero-image{flex:1;text-align:center}
+.hero-image img{max-width:100%;border-radius:14px;box-shadow:0 20px 40px rgba(139,94,52,.18)}
+.section-title{text-align:center;margin-bottom:55px}
+.section-title h2{font-size:36px;color:#222;margin-bottom:15px}
+.section-title p{color:#666;max-width:760px;margin:auto}
+.features,.benefits,.testimonials,.pricing{padding:95px 0;background:#fff}
+.benefits{background:#f2e7d8}
+.features-grid,.benefits-grid,.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:30px}
+.feature-card,.pricing-card,.testimonial{background:#fff;padding:32px;border-radius:14px;box-shadow:0 5px 20px rgba(0,0,0,.06)}
+.feature-card:hover,.pricing-card:hover{transform:translateY(-8px);transition:.3s}
+.feature-icon,.benefit-icon{color:#8b5e34;font-size:36px;margin-bottom:18px}
+.feature-card h3,.benefit-item h3{font-size:22px;margin-bottom:12px}
+.feature-card p,.benefit-item p{color:#666}
+.benefit-item{text-align:center;padding:25px}
+.testimonial{max-width:850px;margin:auto;text-align:center;background:#f8f5ef}
+.testimonial-text{font-size:18px;font-style:italic;color:#555;margin-bottom:25px}
+.author-avatar{width:58px;height:58px;border-radius:50%;background:#8b5e34;color:#fff;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-weight:800}
+.pricing-card{text-align:center}
+.plan-name{font-size:24px;margin-bottom:15px}
+.plan-price{font-size:38px;font-weight:800;color:#8b5e34;margin-bottom:15px}
+.plan-features{list-style:none;margin-bottom:25px}
+.plan-features li{padding:10px;border-bottom:1px solid #eee;color:#555}
+.cta-section{padding:95px 0;background:#8b5e34;color:#fff;text-align:center}
+.cta-section h2{font-size:36px;margin-bottom:18px}
+.cta-section p{max-width:700px;margin:auto auto 28px;opacity:.9}
+.cta-section .cta-button{background:#fff;color:#8b5e34}
+footer{background:#222;color:#ccc;padding:65px 0 20px}
+.footer-content{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:35px;margin-bottom:40px}
+.footer-column h3{color:#fff;margin-bottom:20px}
+.footer-links{list-style:none}
+.footer-links li{margin-bottom:10px}
+.footer-links a{color:#aaa;text-decoration:none}
+.footer-links a:hover{color:#c49a6c}
+.copyright{text-align:center;border-top:1px solid #444;padding-top:18px;color:#888}
+@media(max-width:992px){
+.hero-content{flex-direction:column}
+.hero-text{text-align:center;padding-right:0;margin-bottom:45px}
+.hero-text p{margin:auto auto 30px}
+}
+@media(max-width:768px){
+.nav-links{display:none}
+.mobile-menu-btn{display:block}
+.hero-text h1{font-size:36px}
+.hero-buttons{flex-direction:column;align-items:center}
+.hero-buttons button{width:100%;max-width:300px}
+}
+</style>
+</head>
+
+<body>
+<header>
+<div class="container">
+<nav>
+<div class="logo">
+<div class="logo-icon"><i class="fas fa-home"></i></div>
+<div class="logo-text">實務GO<span>設計</span></div>
+</div>
+
+<ul class="nav-links">
+<li><a href="#features">服務項目</a></li>
+<li><a href="#benefits">設計優勢</a></li>
+<li><a href="#testimonials">客戶回饋</a></li>
+<li><a href="#pricing">方案流程</a></li>
+<li><a href="#contact">聯絡我們</a></li>
+</ul>
+
+<button class="cta-button">預約諮詢</button>
+<button class="mobile-menu-btn"><i class="fas fa-bars"></i></button>
+</nav>
+</div>
+</header>
+
+<section class="hero">
+<div class="container">
+<div class="hero-content">
+<div class="hero-text">
+<h1>讓理想空間<br><span>真正落地實現</span></h1>
+<p>實務GO設計是台灣室內設計團隊，專注住宅規劃、商業空間、家具軟裝與施工監督，協助您用清楚流程完成理想空間。</p>
+<div class="hero-buttons">
+<button class="cta-button">立即諮詢</button>
+<button class="secondary-button">查看服務</button>
+</div>
+</div>
+<div class="hero-image">
+<img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?auto=format&fit=crop&w=900&q=80" alt="室內設計空間">
+</div>
+</div>
+</div>
+</section>
+
+<section class="features" id="features">
+<div class="container">
+<div class="section-title">
+<h2>我們的服務</h2>
+<p>從空間規劃、軟裝搭配到施工管理，提供完整室內設計整合服務。</p>
+</div>
+
+<div class="features-grid">
+<div class="feature-card">
+<div class="feature-icon"><i class="fas fa-pencil-ruler"></i></div>
+<h3>空間規劃</h3>
+<p>依照生活習慣、收納需求與動線，打造實用又舒適的空間配置。</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon"><i class="fas fa-couch"></i></div>
+<h3>家具軟裝</h3>
+<p>協助挑選家具、燈飾、窗簾與飾品，快速建立一致的空間風格。</p>
+</div>
+
+<div class="feature-card">
+<div class="feature-icon"><i class="fas fa-paint-roller"></i></div>
+<h3>施工監督</h3>
+<p>協助工程溝通、品質檢查與進度追蹤，讓設計順利落實。</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="benefits" id="benefits">
+<div class="container">
+<div class="section-title">
+<h2>為什麼選擇實務GO設計？</h2>
+<p>我們重視的不只是美感，更是預算、工法、生活使用與後續維護。</p>
+</div>
+
+<div class="benefits-grid">
+<div class="benefit-item">
+<div class="benefit-icon"><i class="fas fa-check-circle"></i></div>
+<h3>實務導向</h3>
+<p>設計前先確認需求、預算與施工可行性。</p>
+</div>
+
+<div class="benefit-item">
+<div class="benefit-icon"><i class="fas fa-ruler-combined"></i></div>
+<h3>細節規劃</h3>
+<p>重視尺寸、收納、材質與日常使用便利性。</p>
+</div>
+
+<div class="benefit-item">
+<div class="benefit-icon"><i class="fas fa-comments"></i></div>
+<h3>透明溝通</h3>
+<p>流程清楚、溝通明確，降低裝修不確定性。</p>
+</div>
+
+<div class="benefit-item">
+<div class="benefit-icon"><i class="fas fa-seedling"></i></div>
+<h3>長久耐看</h3>
+<p>打造符合生活節奏且不易過時的空間。</p>
+</div>
+</div>
+</div>
+</section>
+
+<section class="testimonials" id="testimonials">
+<div class="container">
+<div class="section-title">
+<h2>客戶回饋</h2>
+<p>來自住宅與商業空間業主的真實使用感受。</p>
+</div>
+
+<div class="testimonial-slider">
+<div class="testimonial">
+<div class="testimonial-text">「實務GO設計把我們的需求整理得很清楚，從格局到收納都很實用，施工過程也很好溝通。」</div>
+<div class="testimonial-author">
+<div class="author-avatar">TW</div>
+<div class="author-info">
+<h4>台北住宅業主</h4>
+<p>住宅空間規劃</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+
+<section class="pricing" id="pricing">
+<div class="container">
+<div class="section-title">
+<h2>服務流程</h2>
+<p>用清楚步驟協助您從想法走到完工。</p>
+</div>
+
+<div class="pricing-grid">
+<div class="pricing-card">
+<h3 class="plan-name">初步諮詢</h3>
+<div class="plan-price">01</div>
+<ul class="plan-features">
+<li>需求訪談</li>
+<li>預算討論</li>
+<li>空間條件確認</li>
+</ul>
+<button class="secondary-button">了解更多</button>
+</div>
+
+<div class="pricing-card featured">
+<h3 class="plan-name">設計規劃</h3>
+<div class="plan-price">02</div>
+<ul class="plan-features">
+<li>平面配置</li>
+<li>風格提案</li>
+<li>材料與軟裝建議</li>
+</ul>
+<button class="cta-button">開始規劃</button>
+</div>
+
+<div class="pricing-card">
+<h3 class="plan-name">施工落實</h3>
+<div class="plan-price">03</div>
+<ul class="plan-features">
+<li>工程溝通</li>
+<li>品質檢查</li>
+<li>完工驗收</li>
+</ul>
+<button class="secondary-button">預約諮詢</button>
+</div>
+</div>
+</div>
+</section>
+
+<section class="cta-section" id="contact">
+<div class="container">
+<h2>開始規劃你的理想空間</h2>
+<p>不論是新成屋、老屋翻新、小宅規劃或商業空間，我們都能協助你找到最適合的設計方式。</p>
+<button class="cta-button">聯絡實務GO設計</button>
+</div>
+</section>
+
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-column">
+<div class="logo">
+<div class="logo-icon"><i class="fas fa-home"></i></div>
+<div class="logo-text">實務GO<span>設計</span></div>
+</div>
+<p style="margin-top:20px;color:#aaa;">台灣室內設計團隊，提供住宅與商業空間整合服務。</p>
+</div>
+
+<div class="footer-column">
+<h3>服務</h3>
+<ul class="footer-links">
+<li><a href="#features">空間規劃</a></li>
+<li><a href="#features">家具軟裝</a></li>
+<li><a href="#features">施工監督</a></li>
+</ul>
+</div>
+
+<div class="footer-column">
+<h3>公司</h3>
+<ul class="footer-links">
+<li><a href="#benefits">設計優勢</a></li>
+<li><a href="#pricing">服務流程</a></li>
+<li><a href="#contact">聯絡我們</a></li>
+</ul>
+</div>
+
+<div class="footer-column">
+<h3>聯絡資訊</h3>
+<ul class="footer-links">
+<li>台灣室內設計服務</li>
+<li>Email: info@shiwugo-design.tw</li>
+<li>Line / 電話請自行替換</li>
+</ul>
+</div>
+</div>
+
+<div class="copyright">
+<p>&copy; 2026 實務GO設計. All rights reserved.</p>
+</div>
+</div>
+</footer>
+
+<script>
+document.querySelector('.mobile-menu-btn').addEventListener('click',function(){
+const navLinks=document.querySelector('.nav-links');
+navLinks.style.display=navLinks.style.display==='flex'?'none':'flex';
+if(window.innerWidth<=768&&navLinks.style.display==='flex'){
+navLinks.style.flexDirection='column';
+navLinks.style.position='absolute';
+navLinks.style.top='80px';
+navLinks.style.left='0';
+navLinks.style.width='100%';
+navLinks.style.backgroundColor='white';
+navLinks.style.padding='20px';
+navLinks.style.boxShadow='0 10px 20px rgba(0,0,0,0.1)';
+document.querySelectorAll('.nav-links li').forEach(item=>item.style.margin='10px 0');
+}
+});
+
+document.querySelectorAll('a[href^="#"]').forEach(anchor=>{
+anchor.addEventListener('click',function(e){
+e.preventDefault();
+const targetId=this.getAttribute('href');
+const targetElement=document.querySelector(targetId);
+if(targetElement){
+window.scrollTo({top:targetElement.offsetTop-80,behavior:'smooth'});
+if(window.innerWidth<=768)document.querySelector('.nav-links').style.display='none';
+}
+});
+});
+
+const testimonials=[
+{text:"「實務GO設計把我們的需求整理得很清楚，從格局到收納都很實用，施工過程也很好溝通。」",name:"台北住宅業主",position:"住宅空間規劃",initials:"TW"},
+{text:"「商業空間規劃很重視動線，完工後客人停留時間變長，整體氛圍也更一致。」",name:"品牌店面業主",position:"商業空間設計",initials:"BD"},
+{text:"「軟裝建議很符合預算，也讓家裡看起來更完整，不需要自己到處找家具。」",name:"新北屋主",position:"家具軟裝配置",initials:"NH"}
+];
+
+let currentTestimonial=0;
+const testimonialElement=document.querySelector('.testimonial');
+
+function rotateTestimonial(){
+currentTestimonial=(currentTestimonial+1)%testimonials.length;
+const t=testimonials[currentTestimonial];
+testimonialElement.innerHTML=`
+<div class="testimonial-text">"${t.text}"</div>
+<div class="testimonial-author">
+<div class="author-avatar">${t.initials}</div>
+<div class="author-info">
+<h4>${t.name}</h4>
+<p>${t.position}</p>
+</div>
+</div>`;
+}
+
+setInterval(rotateTestimonial,5000);
+
+document.querySelectorAll('.cta-button,.secondary-button').forEach(button=>{
+button.addEventListener('click',function(){
+alert('感謝您的諮詢，請將這裡替換為您的 Line、表單或聯絡頁。');
+});
+});
+</script>
+
+</body>
+</html>
